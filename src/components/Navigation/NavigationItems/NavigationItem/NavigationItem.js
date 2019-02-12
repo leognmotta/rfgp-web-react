@@ -6,18 +6,57 @@ import {
   ListItemText,
   withStyles
 } from '@material-ui/core';
-import { Clear } from '@material-ui/icons';
+import Divider from '@material-ui/core/Divider';
+import {
+  PowerSettingsNew,
+  Settings,
+  List,
+  ShoppingCart
+} from '@material-ui/icons';
 
 const navigationItem = props => {
   let menu;
   const { classes } = props;
 
   switch (props.menu) {
-    case 'logout':
+    case 'Logout':
+      menu = (
+        <>
+          <Divider />
+          <ListItem button key={props.menu}>
+            <ListItemIcon>
+              <PowerSettingsNew className={classes.danger} />
+            </ListItemIcon>
+            <ListItemText primary={props.menu} />
+          </ListItem>
+        </>
+      );
+      break;
+    case 'Settings':
       menu = (
         <ListItem button key={props.menu}>
           <ListItemIcon>
-            <Clear className={classes.danger} />
+            <Settings />
+          </ListItemIcon>
+          <ListItemText primary={props.menu} />
+        </ListItem>
+      );
+      break;
+    case 'Produtos':
+      menu = (
+        <ListItem button key={props.menu}>
+          <ListItemIcon>
+            <List />
+          </ListItemIcon>
+          <ListItemText primary={props.menu} />
+        </ListItem>
+      );
+      break;
+    case 'Carrinho':
+      menu = (
+        <ListItem button key={props.menu}>
+          <ListItemIcon>
+            <ShoppingCart />
           </ListItemIcon>
           <ListItemText primary={props.menu} />
         </ListItem>
@@ -27,7 +66,7 @@ const navigationItem = props => {
       menu = (
         <ListItem button key={props.menu}>
           <ListItemIcon>
-            <Clear />
+            <PowerSettingsNew />
           </ListItemIcon>
           <ListItemText primary={props.menu} />
         </ListItem>

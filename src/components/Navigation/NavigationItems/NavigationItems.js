@@ -8,28 +8,28 @@ const navigationItems = props => {
   const { classes } = props;
   return (
     <ul className={classes.resetUL}>
-      <Divider />
       <List>
-        <NavigationItem
-          closeHandle={props.closeHandle}
-          link="/login"
-          menu="test"
-        />
-        <NavigationItem
-          closeHandle={props.closeHandle}
-          link="/login"
-          menu="test"
-        />
-        <NavigationItem
-          closeHandle={props.closeHandle}
-          link="/login"
-          menu="test"
-        />
         <Divider />
         <NavigationItem
           closeHandle={props.closeHandle}
+          link="/produtos"
+          menu="Produtos"
+        />
+        <NavigationItem
+          closeHandle={props.closeHandle}
+          link="/carrinho"
+          menu="Carrinho"
+        />
+        <NavigationItem
+          closeHandle={props.closeHandle}
+          link="/settings"
+          menu="Settings"
+        />
+
+        <NavigationItem
+          closeHandle={props.closeHandle}
           link="/login"
-          menu="logout"
+          menu="Logout"
         />
       </List>
     </ul>

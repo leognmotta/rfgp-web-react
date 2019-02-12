@@ -8,10 +8,10 @@ import thunk from 'redux-thunk';
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
-import reducer from './store/reducer/reducer';
+import auth from './store/reducer/auth';
 
 const rootReducer = combineReducers({
-  reducer: reducer
+  auth: auth
 });
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
