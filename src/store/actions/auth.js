@@ -5,3 +5,11 @@ export const login = () => {
     type: actionTypes.LOGIN
   };
 };
+
+export const logout = () => {
+  localStorage.removeItem('rfgptoken:');
+  localStorage.removeItem('rfgpuserid:');
+  return {
+    type: actionTypes.LOGOUT
+  };
+};
