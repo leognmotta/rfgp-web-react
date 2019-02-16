@@ -1,76 +1,35 @@
-import React, { Component } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
+import { Toolbar } from '@material-ui/core';
+import { Menu } from '@material-ui/icons';
 
-import { withStyles, AppBar, Typography } from '@material-ui/core';
-import classNames from 'classnames';
+import {
+  StyledAppBar, Container, StyledTypography, StyledIconButton, MainPage,
+} from './styles';
 
-import Toolbar from '../../components/Navigation/Toolbar/Toolbar';
-import SideDrawer from '../../components/Navigation/SideDrawer/SideDrawer';
-
-class Layout extends Component {
-  state = {
-    open: false
-  };
-
-  handleDrawerOpen = () => {
-    this.setState({ open: true });
-  };
-
-  handleDrawerClose = () => {
-    this.setState({ open: false });
-  };
-
-  render() {
-    const { classes } = this.props;
-    return (
-      <div className={classes.root}>
-        <AppBar
-          className={classNames(classes.appBar, {
-            [classes.appBarShift]: this.state.open
-          })}
-          position="fixed"
-        >
-          <Toolbar open={this.state.open} drawerOpen={this.handleDrawerOpen}>
-            <Typography variant="h6" color="inherit" className={classes.grow}>
+const Layout = (props) => {
+  const { children } = props;
+  return (
+    <>
+      <Container>
+        <StyledAppBar>
+          <Toolbar>
+            <StyledIconButton color="inherit" aria-label="Menu">
+              <Menu />
+            </StyledIconButton>
+            <StyledTypography variant="h6" color="inherit">
               Rfgp
-            </Typography>
+            </StyledTypography>
           </Toolbar>
-        </AppBar>
-        <SideDrawer
-          drawerClose={this.handleDrawerClose}
-          open={this.state.open}
-        />
-        <main className={classes.defaultMain}>{this.props.children}</main>
-      </div>
-    );
-  }
-}
+        </StyledAppBar>
+      </Container>
+      <MainPage>{children}</MainPage>
+    </>
+  );
+};
 
-const drawerWidth = 240;
-const styles = theme => ({
-  root: {
-    flexGrow: 1
-  },
-  grow: {
-    flexGrow: 1
-  },
-  defaultMain: {
-    marginTop: 56,
-    padding: 14
-  },
-  appBar: {
-    transition: theme.transitions.create(['margin', 'width'], {
-      easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.leavingScreen
-    })
-  },
-  appBarShift: {
-    width: `calc(100% - ${drawerWidth}px)`,
-    marginLeft: drawerWidth,
-    transition: theme.transitions.create(['margin', 'width'], {
-      easing: theme.transitions.easing.easeOut,
-      duration: theme.transitions.duration.enteringScreen
-    })
-  }
-});
+Layout.propTypes = {
+  children: PropTypes.node.isRequired,
+};
 
-export default withStyles(styles, { withTheme: true })(Layout);
+export default Layout;
