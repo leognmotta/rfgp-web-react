@@ -8,7 +8,7 @@ export const LogoContainer = styled.div`
 export const Drawer = styled.div`
   transform: ${props => `translateX(${props.translate})`};
   position: fixed;
-  width: 280px;
+  width: 240px;
   max-width: 70%;
   height: 100%;
   left: 0;

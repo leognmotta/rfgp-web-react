@@ -8,7 +8,7 @@ const Toolbar = (props) => {
   const { drawerToggleClicked, open } = props;
 
   let translateX = '0';
-  if (open) translateX = '400%';
+  if (open) translateX = '320%';
 
   return (
     <Header>
