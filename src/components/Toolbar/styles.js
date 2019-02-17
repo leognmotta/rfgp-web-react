@@ -8,7 +8,7 @@ export const Header = styled.header`
   left: 0;
   background-color: #262626;
   display: flex;
-  justify-content: space-between;
+  justify-content: start;
   align-items: center;
   padding: 0 20px;
   box-sizing: border-box;
@@ -17,5 +17,8 @@ export const Header = styled.header`
 
 export const LogoContainer = styled.div`
   color: #fff;
+  margin-left: 1em;
   font-size: 1.5em;
+  transform: ${props => `translateX(${props.translate})`};
+  transition: transform 0.3s ease-out;
 `;

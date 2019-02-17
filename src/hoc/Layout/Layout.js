@@ -23,8 +23,12 @@ class Layout extends Component {
     const { children } = this.props;
     return (
       <>
-        <Toolbar drawerToggleClicked={this.sideDrawerToggleHandler} />
-        <SideDrawer open={showSideDrawer} closed={this.sideDrawerClosedHandler} />
+        <Toolbar open={showSideDrawer} drawerToggleClicked={this.sideDrawerToggleHandler} />
+        <SideDrawer
+          open={showSideDrawer}
+          closed={this.sideDrawerClosedHandler}
+          drawerToggleClicked={this.sideDrawerToggleHandler}
+        />
         <AppContainer>{children}</AppContainer>
       </>
     );
