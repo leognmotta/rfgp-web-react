@@ -1,35 +1,34 @@
-import React from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Toolbar } from '@material-ui/core';
-import { Menu } from '@material-ui/icons';
 
-import {
-  StyledAppBar, Container, StyledTypography, StyledIconButton, MainPage,
-} from './styles';
+import Toolbar from '../../components/Toolbar/Toolbar';
+import SideDrawer from '../../components/SideDrawer/SideDrawer';
+import { AppContainer } from './styles';
 
-const Layout = (props) => {
-  const { children } = props;
-  return (
-    <>
-      <Container>
-        <StyledAppBar>
-          <Toolbar>
-            <StyledIconButton color="inherit" aria-label="Menu">
-              <Menu />
-            </StyledIconButton>
-            <StyledTypography variant="h6" color="inherit">
-              Rfgp
-            </StyledTypography>
-          </Toolbar>
-        </StyledAppBar>
-      </Container>
-      <MainPage>{children}</MainPage>
-    </>
-  );
-};
+class Layout extends Component {
+  state = {
+    showSideDrawer: false,
+  };
 
-Layout.propTypes = {
-  children: PropTypes.node.isRequired,
-};
+  sideDrawerClosedHandler = () => {
+    this.setState({ showSideDrawer: false });
+  };
+
+  sideDrawerToggleHandler = () => {
+    this.setState(prevState => ({ showSideDrawer: !prevState.showSideDrawer }));
+  };
+
+  render() {
+    const { showSideDrawer } = this.state;
+    const { children } = this.props;
+    return (
+      <>
+        <Toolbar drawerToggleClicked={this.sideDrawerToggleHandler} />
+        <SideDrawer open={showSideDrawer} closed={this.sideDrawerClosedHandler} />
+        <AppContainer>{children}</AppContainer>
+      </>
+    );
+  }
+}
 
 export default Layout;
