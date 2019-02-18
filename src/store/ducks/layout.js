@@ -1,4 +1,5 @@
 import { createActions, createReducer } from 'reduxsauce';
+import { updateObject } from '../../helper/immutableRedux';
 
 /**
  * Create action types & creators
@@ -14,10 +15,7 @@ const INITIAL_STATE = {
   showSideDrawer: false,
 };
 
-const sideDrawerToggle = (state = INITIAL_STATE) => ({
-  ...state,
-  showSideDrawer: !state.showSideDrawer,
-});
+const sideDrawerToggle = (state = INITIAL_STATE) => updateObject(state, { showSideDrawer: !state.showSideDrawer });
 
 /**
  * Create reducers
