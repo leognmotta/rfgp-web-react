@@ -14,7 +14,7 @@ const INITIAL_STATE = {
   showSideDrawer: false,
 };
 
-const sideDrawerToggle = (state = INITIAL_STATE, action) => ({
+const sideDrawerToggle = (state = INITIAL_STATE) => ({
   ...state,
   showSideDrawer: !state.showSideDrawer,
 });

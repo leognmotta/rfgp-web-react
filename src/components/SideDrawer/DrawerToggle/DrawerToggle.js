@@ -5,7 +5,6 @@ import { bindActionCreators } from 'redux';
 import PropTypes from 'prop-types';
 import { Creators as sideDrawerActions } from '../../../store/ducks/layout';
 
-
 import { Toggle } from './styles';
 
 const DrawerToggle = (props) => {
@@ -25,3 +24,8 @@ export default connect(
   null,
   mapDispatchToProps,
 )(DrawerToggle);
+
+/**
+ * Prop types
+ */
+DrawerToggle.propTypes = { sideDrawerToggle: PropTypes.func.isRequired };

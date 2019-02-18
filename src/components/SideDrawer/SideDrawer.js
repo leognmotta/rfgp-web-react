@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import { FaTimes } from 'react-icons/fa';
 
@@ -8,7 +9,6 @@ import { Creators as sideDrawerActions } from '../../store/ducks/layout';
 
 // import NavigationItems from '../NavigationItems/NavigationItems';
 import Backdrop from '../UI/Backdrop/Backdrop';
-
 import { LogoContainer, Drawer, Toggle } from './styles';
 
 const SideDrawer = (props) => {
@@ -41,3 +41,11 @@ export default connect(
   mapStateToProps,
   mapDispatchToProps,
 )(SideDrawer);
+
+/**
+ * Prop types
+ */
+SideDrawer.propTypes = {
+  showSideDrawer: PropTypes.bool.isRequired,
+  sideDrawerToggle: PropTypes.func.isRequired,
+};

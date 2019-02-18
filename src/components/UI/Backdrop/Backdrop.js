@@ -1,5 +1,7 @@
 import React from 'react';
 
+import PropTypes from 'prop-types';
+
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Creators as sideDrawerActions } from '../../../store/ducks/layout';
@@ -21,3 +23,11 @@ export default connect(
   mapStateToProps,
   mapDispatchToProps,
 )(Backdrop);
+
+/**
+ * Prop types
+ */
+Backdrop.propTypes = {
+  showSideDrawer: PropTypes.bool.isRequired,
+  sideDrawerToggle: PropTypes.func.isRequired,
+};

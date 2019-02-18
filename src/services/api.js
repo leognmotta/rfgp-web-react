@@ -2,10 +2,11 @@ import axios from 'axios';
 import { getToken } from './auth';
 
 const api = axios.create({
-  baseURL: 'http://localhost:8080/v1'
+  baseURL: 'http://localhost:8080/v1',
 });
 
-api.interceptors.request.use(async config => {
+api.interceptors.request.use(async (param) => {
+  const config = param;
   const token = getToken();
   if (token) {
     config.headers.Authorization = `Bearer ${token}`;
