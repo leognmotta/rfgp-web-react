@@ -3,14 +3,18 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
 import { IsLogged, PrivateRoute } from './helper/CustomRouteComponent';
 
+import SignIn from './pages/SignIn/SignIn';
+import SignUp from './pages/SignUp/SignUp';
+import Products from './pages/Products/Products';
+import NotFound from './pages/404/NotFound';
+
 const Routes = () => (
   <BrowserRouter>
     <Switch>
-      <IsLogged path="/" component={() => <h1>Hello</h1>} />
-      {/* <IsLogged path="/signup" component={SignUp} />
-      <PrivateRoute exact path="/" component={App} />
-      <Route path="/home" component={() => <h1>Landing page</h1>} />
-      <Route path="*" component={() => <h1>Page not found</h1>} /> */}
+      <IsLogged exact path="/" component={SignIn} />
+      <IsLogged path="/signup" component={SignUp} />
+      <PrivateRoute exact path="/produtos" component={Products} />
+      <Route path="*" component={NotFound} />
     </Switch>
   </BrowserRouter>
 );

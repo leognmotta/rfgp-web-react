@@ -11,7 +11,7 @@ export const PrivateRoute = ({ component: Component, ...rest }) => (
     render={props => (isAuthenticated() ? (
       <Component {...props} />
     ) : (
-      <Redirect to={{ pathname: '/login', state: { from: props.location } }} />
+      <Redirect to={{ pathname: '/', state: { from: props.location } }} />
     ))
     }
   />
@@ -21,7 +21,7 @@ export const IsLogged = ({ component: Component, ...rest }) => (
   <Route
     {...rest}
     render={props => (isAuthenticated() ? (
-      <Redirect to={{ pathname: '/', state: { from: props.location } }} />
+      <Redirect to={{ pathname: '/produtos', state: { from: props.location } }} />
     ) : (
       <Component {...props} />
     ))
@@ -32,12 +32,20 @@ export const IsLogged = ({ component: Component, ...rest }) => (
 /**
  * Prop types
  */
+PrivateRoute.defaultProps = {
+  location: undefined,
+};
+
 PrivateRoute.propTypes = {
-  component: PropTypes.element.isRequired,
-  location: PropTypes.string.isRequired,
+  component: PropTypes.func.isRequired,
+  location: PropTypes.objectOf(Object),
+};
+
+IsLogged.defaultProps = {
+  location: undefined,
 };
 
 IsLogged.propTypes = {
-  component: PropTypes.element.isRequired,
-  location: PropTypes.string.isRequired,
+  component: PropTypes.func.isRequired,
+  location: PropTypes.objectOf(Object),
 };
