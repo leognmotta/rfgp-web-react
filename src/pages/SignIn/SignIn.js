@@ -17,7 +17,7 @@ class SignIn extends Component {
     event.preventDefault();
     const { email, password } = this.state;
     if (!email || !password) {
-      this.setState({ error: 'Please fill all fields!' });
+      this.setState({ error: 'Por favor preencha todos os campos!' });
     } else {
       try {
         const response = await api.post('/auth/signin', { email, password });
@@ -40,7 +40,7 @@ class SignIn extends Component {
       <Container>
         <Form onSubmit={this.loginSubmitHandler}>
           {this.state.error && <p>{this.state.error}</p>}
-          <h1>Sign In</h1>
+          <h1>Entrar</h1>
           <label>Email: </label>
           <input
             type="email"
@@ -58,9 +58,9 @@ class SignIn extends Component {
             onChange={this.inputChangedHandler}
           />
           <StyledLink to="/esqueci-minha-senha">Esqueceu a senha?</StyledLink>
-          <button type="submit">Login</button>
+          <button type="submit">Entrar</button>
           <hr />
-          <Link to="/signup">Go to Sign Up</Link>
+          <Link to="/signup">Criar nova conta</Link>
         </Form>
       </Container>
     );

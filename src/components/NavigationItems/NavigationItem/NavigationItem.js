@@ -2,7 +2,7 @@ import React from 'react';
 
 import PropTypes from 'prop-types';
 import {
-  FaSignOutAlt, FaSignInAlt, FaBoxOpen, FaUserPlus,
+  FaShoppingCart, FaSignInAlt, FaBoxOpen, FaUserPlus,
 } from 'react-icons/fa';
 import { isAuthenticated } from '../../../services/auth';
 import { StyledLink, Li } from './styles';
@@ -14,7 +14,7 @@ const NavigationItem = (props) => {
 
   let li;
   switch (text) {
-    case 'Sign In':
+    case 'Entrar':
       if (!isAuthenticated()) display = 'flex';
       li = (
         <Li display={display}>
@@ -38,7 +38,19 @@ const NavigationItem = (props) => {
       );
       break;
 
-    case 'Sign Up':
+      case 'Carrinhos':
+      if (isAuthenticated()) display = 'flex';
+      li = (
+        <Li display={display}>
+          <FaShoppingCart />
+          <StyledLink onClick={clicked} to="/carrinhos">
+            {text}
+          </StyledLink>
+        </Li>
+      );
+      break;
+
+    case 'Registrar':
       if (!isAuthenticated()) display = 'flex';
       li = (
         <Li display={display}>

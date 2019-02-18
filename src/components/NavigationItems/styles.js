@@ -9,6 +9,7 @@ export const SignOut = styled.div`
   display: flex;
   flex-direction: row;
   padding: 1em 0;
+  border-top: solid 1px #ccc;
 
   button {
     border: none;

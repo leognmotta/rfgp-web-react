@@ -19,12 +19,12 @@ class NavigationItems extends Component {
   };
 
   render() {
-    const navigationItems = ['Sign In', 'Sign Up', 'Produtos'];
+    const navigationItems = ['Entrar', 'Registrar', 'Produtos', 'Carrinhos'];
 
     const signout = (
       <SignOut>
         <FaSignOutAlt color="red" />
-        <button onClick={this.signOutHandler}>Sign Out</button>
+        <button onClick={this.signOutHandler}>Sair</button>
       </SignOut>
     );
     return (
