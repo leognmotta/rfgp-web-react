@@ -1,8 +1,15 @@
 import styled from 'styled-components';
 
+export const SideDrawerHeader = styled.div`
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: space-between;
+  border-bottom: solid 1px #cccccc;
+  padding: 0.8em 0;
+`;
+
 export const LogoContainer = styled.div`
   font-size: 1.5em;
-  transform: translateY(-240%);
 `;
 
 export const Drawer = styled.div`
@@ -24,8 +31,11 @@ export const Drawer = styled.div`
 
 export const Toggle = styled.div`
   align-self: flex-end;
-  margin-bottom: 1.5em;
   font-size: 1.5em;
   z-index: 1000;
   cursor: pointer;
+`;
+
+export const Nav = styled.nav`
+  padding: 0.8em 0;
 `;

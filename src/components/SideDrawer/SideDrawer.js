@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { withRouter } from 'react-router-dom';
 
 import { FaTimes } from 'react-icons/fa';
 
@@ -9,7 +10,10 @@ import { Creators as sideDrawerActions } from '../../store/ducks/layout';
 
 // import NavigationItems from '../NavigationItems/NavigationItems';
 import Backdrop from '../UI/Backdrop/Backdrop';
-import { LogoContainer, Drawer, Toggle } from './styles';
+import NavigationItems from '../NavigationItems/NavigationItems';
+import {
+  LogoContainer, Drawer, Toggle, SideDrawerHeader, Nav,
+} from './styles';
 
 const SideDrawer = (props) => {
   const { showSideDrawer, sideDrawerToggle } = props;
@@ -21,11 +25,15 @@ const SideDrawer = (props) => {
     <>
       <Backdrop />
       <Drawer translate={translateX}>
-        <Toggle onClick={sideDrawerToggle}>
-          <FaTimes />
-        </Toggle>
-        <LogoContainer>Rfgp</LogoContainer>
-        <nav>items</nav>
+        <SideDrawerHeader>
+          <Toggle onClick={sideDrawerToggle}>
+            <FaTimes />
+          </Toggle>
+          <LogoContainer>Rfgp</LogoContainer>
+        </SideDrawerHeader>
+        <Nav>
+          <NavigationItems />
+        </Nav>
       </Drawer>
     </>
   );
@@ -40,7 +48,7 @@ const mapDispatchToProps = dispatch => bindActionCreators(sideDrawerActions, dis
 export default connect(
   mapStateToProps,
   mapDispatchToProps,
-)(SideDrawer);
+)(withRouter(SideDrawer));
 
 /**
  * Prop types
