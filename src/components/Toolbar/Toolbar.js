@@ -1,14 +1,14 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 
 import DrawerToggle from '../SideDrawer/DrawerToggle/DrawerToggle';
-import { Header, LogoContainer, Nav } from './styles';
+import { Header, LogoContainer } from './styles';
 
 const Toolbar = (props) => {
-  const { drawerToggleClicked, open } = props;
+  const { drawerToggleClicked, showSideDrawer } = props;
 
   let translateX = '0';
-  if (open) translateX = '320%';
+  if (showSideDrawer) translateX = '320%';
 
   return (
     <Header>
@@ -18,4 +18,11 @@ const Toolbar = (props) => {
   );
 };
 
-export default Toolbar;
+const mapStateToProps = state => ({
+  showSideDrawer: state.layout.showSideDrawer,
+});
+
+export default connect(
+  mapStateToProps,
+  null,
+)(Toolbar);
