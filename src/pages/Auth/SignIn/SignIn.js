@@ -51,8 +51,8 @@ class SignIn extends Component {
     return (
       <Container>
         <Form onSubmit={this.loginSubmitHandler}>
-          {error && <p>{error}</p>}
           <h1>Entrar</h1>
+          {error && <p>{error}</p>}
           <label htmlFor="email">
             Email:
             <input

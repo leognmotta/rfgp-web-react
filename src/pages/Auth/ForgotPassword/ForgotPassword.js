@@ -66,7 +66,7 @@ class ForgotPassword extends Component {
 
     if (submitted) {
       element = (
-        <Paper bgColor="#4BB543" flexDirection="row">
+        <Paper bgColor="#5cb85c" flexDirection="row">
           <FaCheckCircle color="#fff" size="64" />
           <p style={{ color: '#fff', marginLeft: '20px' }}>
             O email foi enviado com sucesso, caso não encontre, cheque sua caixa de spam!

@@ -6,6 +6,7 @@ import { IsLogged, PrivateRoute } from './helper/CustomRouteComponent';
 
 import SignIn from './pages/Auth/SignIn/SignIn';
 import SignUp from './pages/Auth/SignUp/SignUp';
+import ValidateEmail from './pages/Auth/ValidateEmail/ValidateEmail';
 import ForgotPassword from './pages/Auth/ForgotPassword/ForgotPassword';
 import ResetPassword from './pages/Auth/ResetPassword/ResetPassword';
 import Products from './pages/Products/Products';
@@ -17,6 +18,7 @@ const Routes = () => (
       <Switch>
         <IsLogged exact path="/" component={SignIn} />
         <IsLogged path="/signup" component={SignUp} />
+        <IsLogged path="/validar-email/:token" component={ValidateEmail} />
         <IsLogged path="/esqueci-minha-senha" component={ForgotPassword} />
         <IsLogged path="/resetar-senha/:token" component={ResetPassword} />
         <PrivateRoute exact path="/produtos" component={Products} />
