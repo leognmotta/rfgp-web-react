@@ -12,7 +12,6 @@ body, html {
   font-family: 'Helvetica Neue', 'Helvetica', Arial, sans-serif;
   text-rendering: optimizeLegibility !important;
   -webkit-font-smoothing: antialiased !important;
-  width: 100%;
 }
 `;
 

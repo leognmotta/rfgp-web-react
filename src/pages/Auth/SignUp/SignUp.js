@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import { Link, withRouter } from 'react-router-dom';
 import api from '../../../services/api';
 
+import Spinner from '../../../components/UI/Spinner/Spinner';
 import { Form, Container } from './styles';
 
 class SignUp extends Component {
@@ -14,10 +15,12 @@ class SignUp extends Component {
     email: '',
     password: '',
     error: '',
+    buttonClicked: false,
   };
 
   signUpSubmitHandler = async (event) => {
     event.preventDefault();
+    this.setState({ buttonClicked: true });
 
     const {
       name, lastName, storeName, email, password,
@@ -25,6 +28,7 @@ class SignUp extends Component {
     const { history } = this.props;
 
     if (!name || !email || !password || !lastName || !storeName) {
+      this.setState({ buttonClicked: false });
       this.setState({ error: 'Por favor preencha todos os campos...' });
     } else {
       try {
@@ -37,6 +41,7 @@ class SignUp extends Component {
         });
         history.push('/');
       } catch (error) {
+        this.setState({ buttonClicked: false });
         const errorMessage = error.response.data.message;
         this.setState({ error: errorMessage });
       }
@@ -48,7 +53,7 @@ class SignUp extends Component {
   };
 
   render() {
-    const { error } = this.state;
+    const { error, buttonClicked } = this.state;
 
     return (
       <Container>
@@ -95,7 +100,7 @@ class SignUp extends Component {
               onChange={this.inputChangedHandler}
             />
           </label>
-          <button type="submit">Registrar</button>
+          <button type="submit">{buttonClicked ? <Spinner /> : 'Registrar'}</button>
           <hr />
           <Link to="/">Ja tem uma conta?</Link>
         </Form>

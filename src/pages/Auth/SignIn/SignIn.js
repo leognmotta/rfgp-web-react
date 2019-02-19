@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import api from '../../../services/api';
 
 import { login } from '../../../services/auth';
+import Spinner from '../../../components/UI/Spinner/Spinner';
 import { Form, Container, StyledLink } from './styles';
 
 class SignIn extends Component {
@@ -12,15 +13,18 @@ class SignIn extends Component {
     email: '',
     password: '',
     error: '',
+    buttonClicked: false,
   };
 
   loginSubmitHandler = async (event) => {
     event.preventDefault();
+    this.setState({ buttonClicked: true });
 
     const { history } = this.props;
     const { email, password } = this.state;
 
     if (!email || !password) {
+      this.setState({ buttonClicked: false });
       this.setState({ error: 'Por favor preencha todos os campos!' });
     } else {
       try {
@@ -28,6 +32,7 @@ class SignIn extends Component {
         login(response.data.token);
         history.push('/');
       } catch (error) {
+        this.setState({ buttonClicked: false });
         const errorMessage = error.response.data.message;
         this.setState({ error: errorMessage });
       }
@@ -39,7 +44,9 @@ class SignIn extends Component {
   };
 
   render() {
-    const { error, email, password } = this.state;
+    const {
+      error, email, password, buttonClicked,
+    } = this.state;
 
     return (
       <Container>
@@ -67,7 +74,7 @@ class SignIn extends Component {
             />
             <StyledLink to="/esqueci-minha-senha">Esqueceu a senha?</StyledLink>
           </label>
-          <button type="submit">Entrar</button>
+          <button type="submit">{buttonClicked ? <Spinner /> : 'Entrar'}</button>
           <hr />
           <Link to="/signup">Criar nova conta</Link>
         </Form>

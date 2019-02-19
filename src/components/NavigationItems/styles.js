@@ -17,5 +17,6 @@ export const SignOut = styled.div`
     font-size: inherit;
     margin-left: 1em;
     padding: 0 0.5em;
+    cursor: pointer;
   }
 `;
