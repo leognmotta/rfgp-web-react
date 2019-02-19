@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
 
-import api from '../../services/api';
+import api from '../../../services/api';
 
 import { Form, Container } from './styles';
 
@@ -12,7 +12,7 @@ class ForgotPassword extends Component {
     error: '',
   };
 
-  loginSubmitHandler = async (event) => {
+  submitHandler = async (event) => {
     event.preventDefault();
     const { email } = this.state;
     if (!email) {
@@ -36,7 +36,7 @@ class ForgotPassword extends Component {
     const { submitted, email, error } = this.state;
     return (
       <Container>
-        <Form onSubmit={this.loginSubmitHandler}>
+        <Form onSubmit={this.submitHandler}>
           <h1>Reasetar senha</h1>
           {error && <p>{error}</p>}
           <label htmlFor="email">

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 import PropTypes from 'prop-types';
 import { Link, withRouter } from 'react-router-dom';
-import api from '../../services/api';
+import api from '../../../services/api';
 
 import { Form, Container } from './styles';
 

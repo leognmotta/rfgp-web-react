@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 
 import { Link, withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import api from '../../services/api';
+import api from '../../../services/api';
 
-import { login } from '../../services/auth';
+import { login } from '../../../services/auth';
 import { Form, Container, StyledLink } from './styles';
 
 class SignIn extends Component {
