@@ -5,48 +5,55 @@ import { withRouter } from 'react-router-dom';
 import { FaCheckCircle, FaExclamationCircle } from 'react-icons/fa';
 import api from '../../../services/api';
 
+import Spinner from '../../../components/UI/Spinner/Spinner';
 import Paper from '../../../components/UI/Paper/Paper';
 import { Container } from './styles';
 
 class ValidateEmail extends Component {
   state = {
-    succeeded: false,
-    successMessage: '',
-    error: '',
+    succeeded: null,
+    message: '',
+    update: false,
   };
 
   async componentDidMount() {
     const { match } = this.props;
     try {
       const confirmEmail = await api.put(`/auth/validate-email/${match.params.token}`);
-      this.setState({ succeeded: true, successMessage: confirmEmail.data.message });
+      this.setState({ succeeded: true, update: true, message: confirmEmail.data.message });
     } catch (error) {
       const errorMessage = error.response.data.message;
-      this.setState({ error: errorMessage });
+      this.setState({ message: errorMessage, update: true });
     }
   }
 
   render() {
-    const { succeeded, successMessage, error } = this.state;
+    const { message, succeeded, update } = this.state;
 
-    let message = successMessage;
-    let color = '#5cb85c';
-    let icon = <FaCheckCircle color="#fff" size="64" />;
-
-    if (!succeeded) {
-      message = error;
-      color = '#d9534f';
-      icon = <FaExclamationCircle color="#fff" size="64" />;
-    }
-
-    const element = (
-      <Paper bgColor={color} flexDirection="row">
-        {icon}
-        <p style={{ color: '#fff', marginLeft: '20px' }}>{message}</p>
+    const loading = (
+      <Paper>
+        <Spinner color="#262626" />
       </Paper>
     );
 
-    return <Container>{element}</Container>;
+    let element;
+    if (!succeeded) {
+      element = (
+        <Paper bgColor="#d9534f" flexDirection="row">
+          <FaExclamationCircle color="#fff" size="64" />
+          <p style={{ color: '#fff', marginLeft: '20px' }}>{message}</p>
+        </Paper>
+      );
+    } else {
+      element = (
+        <Paper bgColor="#5cb85c" flexDirection="row">
+          <FaCheckCircle color="#fff" size="64" />
+          <p style={{ color: '#fff', marginLeft: '20px' }}>{message}</p>
+        </Paper>
+      );
+    }
+
+    return <Container>{update ? element : loading}</Container>;
   }
 }
 

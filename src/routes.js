@@ -18,7 +18,7 @@ const Routes = () => (
       <Switch>
         <IsLogged exact path="/" component={SignIn} />
         <IsLogged path="/signup" component={SignUp} />
-        <IsLogged path="/validar-email/:token" component={ValidateEmail} />
+        <Route path="/validar-email/:token" component={ValidateEmail} />
         <IsLogged path="/esqueci-minha-senha" component={ForgotPassword} />
         <IsLogged path="/resetar-senha/:token" component={ResetPassword} />
         <PrivateRoute exact path="/produtos" component={Products} />
