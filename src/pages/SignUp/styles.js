@@ -15,7 +15,20 @@ export const Form = styled.form`
   flex-direction: column;
   align-items: center;
   label {
-    align-self: flex-start;
+    width: 100%;
+    input {
+      flex: 1;
+      height: 46px;
+      margin-bottom: 15px;
+      padding: 0 20px;
+      color: #777;
+      font-size: 15px;
+      width: 100%;
+      border: 1px solid #ddd;
+      &::placeholder {
+        color: #999;
+      }
+    }
   }
   img {
     width: 100px;
@@ -28,19 +41,6 @@ export const Form = styled.form`
     padding: 10px;
     width: 100%;
     text-align: center;
-  }
-  input {
-    flex: 1;
-    height: 46px;
-    margin-bottom: 15px;
-    padding: 0 20px;
-    color: #777;
-    font-size: 15px;
-    width: 100%;
-    border: 1px solid #ddd;
-    &::placeholder {
-      color: #999;
-    }
   }
   button {
     color: #fff;

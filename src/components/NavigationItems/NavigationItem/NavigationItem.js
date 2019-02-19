@@ -38,7 +38,7 @@ const NavigationItem = (props) => {
       );
       break;
 
-      case 'Carrinhos':
+    case 'Carrinhos':
       if (isAuthenticated()) display = 'flex';
       li = (
         <Li display={display}>
@@ -70,3 +70,12 @@ const NavigationItem = (props) => {
 };
 
 export default NavigationItem;
+
+/**
+ * Prop types
+ */
+
+NavigationItem.propTypes = {
+  text: PropTypes.string.isRequired,
+  clicked: PropTypes.func.isRequired,
+};

@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+
+import PropTypes from 'prop-types';
 import { Link, withRouter } from 'react-router-dom';
 import api from '../../services/api';
 
@@ -20,6 +22,7 @@ class SignUp extends Component {
     const {
       name, lastName, storeName, email, password,
     } = this.state;
+    const { history } = this.props;
 
     if (!name || !email || !password || !lastName || !storeName) {
       this.setState({ error: 'Por favor preencha todos os campos...' });
@@ -32,7 +35,7 @@ class SignUp extends Component {
           password,
           storeName,
         });
-        this.props.history.push('/');
+        history.push('/');
       } catch (error) {
         const errorMessage = error.response.data.message;
         this.setState({ error: errorMessage });
@@ -42,45 +45,56 @@ class SignUp extends Component {
 
   inputChangedHandler = (event) => {
     this.setState({ [event.target.name]: event.target.value });
-    console.log(this.state);
   };
 
   render() {
+    const { error } = this.state;
+
     return (
       <Container>
         <Form onSubmit={this.signUpSubmitHandler}>
           <h1>Registro</h1>
-          {this.state.error && <p>{this.state.error}</p>}
-          <label>Nome:</label>
-          <input type="text" placeholder="Name" name="name" onChange={this.inputChangedHandler} />
-          <label>Sobrenome:</label>
-          <input
-            type="text"
-            placeholder="Sobrenome"
-            name="lastName"
-            onChange={this.inputChangedHandler}
-          />
-          <label>Loja:</label>
-          <input
-            type="text"
-            placeholder="Loja"
-            name="storeName"
-            onChange={this.inputChangedHandler}
-          />
-          <label>Email:</label>
-          <input
-            type="email"
-            placeholder="Email"
-            name="email"
-            onChange={this.inputChangedHandler}
-          />
-          <label>Senha:</label>
-          <input
-            type="password"
-            placeholder="Password"
-            name="password"
-            onChange={this.inputChangedHandler}
-          />
+          {error && <p>{error}</p>}
+          <label htmlFor="name">
+            Nome:
+            <input type="text" placeholder="Name" name="name" onChange={this.inputChangedHandler} />
+          </label>
+          <label htmlFor="lastName">
+            Sobrenome:
+            <input
+              type="text"
+              placeholder="Sobrenome"
+              name="lastName"
+              onChange={this.inputChangedHandler}
+            />
+          </label>
+          <label htmlFor="storeName">
+            Loja:
+            <input
+              type="text"
+              placeholder="Loja"
+              name="storeName"
+              onChange={this.inputChangedHandler}
+            />
+          </label>
+          <label htmlFor="email">
+            Email:
+            <input
+              type="email"
+              placeholder="Email"
+              name="email"
+              onChange={this.inputChangedHandler}
+            />
+          </label>
+          <label htmlFor="password">
+            Senha:
+            <input
+              type="password"
+              placeholder="Password"
+              name="password"
+              onChange={this.inputChangedHandler}
+            />
+          </label>
           <button type="submit">Registrar</button>
           <hr />
           <Link to="/">Ja tem uma conta?</Link>
@@ -91,3 +105,10 @@ class SignUp extends Component {
 }
 
 export default withRouter(SignUp);
+
+/**
+ * Prop types
+ */
+SignUp.propTypes = {
+  history: PropTypes.objectOf(Object).isRequired,
+};
