@@ -4,8 +4,10 @@ import PropTypes from 'prop-types';
 
 import { Container } from './styles';
 
-const Paper = ({ children, flexDirection, bgColor }) => (
-  <Container flexDirection={flexDirection} bgColor={bgColor}>
+const Paper = ({
+  children, flexDirection, bgColor, padding,
+}) => (
+  <Container flexDirection={flexDirection} bgColor={bgColor} padding={padding}>
     {children}
   </Container>
 );
@@ -19,4 +21,5 @@ Paper.propTypes = {
   children: PropTypes.node.isRequired,
   flexDirection: PropTypes.string.isRequired,
   bgColor: PropTypes.string.isRequired,
+  padding: PropTypes.string.isRequired,
 };

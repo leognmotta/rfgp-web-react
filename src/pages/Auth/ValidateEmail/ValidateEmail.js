@@ -31,7 +31,7 @@ class ValidateEmail extends Component {
     const { message, succeeded, update } = this.state;
 
     const loading = (
-      <Paper>
+      <Paper padding="1">
         <Spinner color="#262626" />
       </Paper>
     );
@@ -39,14 +39,14 @@ class ValidateEmail extends Component {
     let element;
     if (!succeeded) {
       element = (
-        <Paper bgColor="#d9534f" flexDirection="row">
+        <Paper bgColor="#d9534f" flexDirection="row" padding="1">
           <FaExclamationCircle color="#fff" size="64" />
           <p style={{ color: '#fff', marginLeft: '20px' }}>{message}</p>
         </Paper>
       );
     } else {
       element = (
-        <Paper bgColor="#5cb85c" flexDirection="row">
+        <Paper bgColor="#5cb85c" flexDirection="row" padding="1">
           <FaCheckCircle color="#fff" size="64" />
           <p style={{ color: '#fff', marginLeft: '20px' }}>{message}</p>
         </Paper>
