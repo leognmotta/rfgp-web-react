@@ -11,7 +11,7 @@ const Product = (props) => {
   } = props;
   return (
     <Container>
-      <Paper bgColor="#fff" flexDirection="column">
+      <Paper bgColor="#fff" flexDirection="column" border="1px solid #ccc">
         <Info>
           <p>
             <strong>{nome}</strong>

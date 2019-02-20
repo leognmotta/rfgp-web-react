@@ -5,9 +5,9 @@ import PropTypes from 'prop-types';
 import { Container } from './styles';
 
 const Paper = ({
-  children, flexDirection, bgColor, padding,
+  children, flexDirection, bgColor, padding, border,
 }) => (
-  <Container flexDirection={flexDirection} bgColor={bgColor} padding={padding}>
+  <Container flexDirection={flexDirection} bgColor={bgColor} padding={padding} border={border}>
     {children}
   </Container>
 );
