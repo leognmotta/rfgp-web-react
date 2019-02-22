@@ -1,6 +1,7 @@
 import React from 'react';
 
 import Paper from '../UI/Paper/Paper';
+import Controller from './ProductController';
 import {
   Container, Info, Prices, Stock,
 } from './styles';
@@ -58,6 +59,7 @@ const Product = (props) => {
           </div>
         </Stock>
       </Paper>
+      <Controller />
     </Container>
   );
 };
