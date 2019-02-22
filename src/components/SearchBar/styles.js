@@ -34,6 +34,9 @@ export const Container = styled.div`
       color: #262626;
       padding: 0.5em;
       cursor: pointer;
+      &:disabled {
+        color: #ccc;
+      }
     }
     input {
       height: 100%;

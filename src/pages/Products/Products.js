@@ -1,56 +1,65 @@
 import React, { Component } from 'react';
 
-import { FaSearch } from 'react-icons/fa';
+import { withRouter } from 'react-router-dom';
+
+import { FaSearch, FaExclamationCircle } from 'react-icons/fa';
+import api from '../../services/api';
+import { logout } from '../../services/auth';
 import Spinner from '../../components/UI/Spinner/Spinner';
+import Paper from '../../components/UI/Paper/Paper';
 import Product from '../../components/Product/Product';
 import SearchBar from '../../components/SearchBar/SearchBar';
 import {} from './styles';
 
 class Products extends Component {
   state = {
-    produtos: [
-      {
-        nome: 'CADERNO TILIBRA 10 MAT BEN 10',
-        ref: '295500',
-        preco1: 10.99,
-        preco2: 14.99,
-        emb1: 4,
-        emb2: 1,
-        disponivel: 5,
-        codebar1: 7891027295562,
-        codebar2: 7891027061378,
-      },
-      {
-        nome: 'CADERNO ESPIRAL CAPA DURA COLEGIAL 1 MATÉRIA AVENGERS HEROES 80 FOLHAS',
-        ref: '295500',
-        preco1: 10.99,
-        preco2: 14.99,
-        preco3: 20.99,
-        emb1: 4,
-        emb2: 2,
-        emb3: 1,
-        disponivel: 5,
-        codebar1: 7891027295562,
-        codebar2: 7891027061378,
-      },
-    ],
+    produtos: [],
     option: 'name',
     searchFor: '',
     searching: false,
+    error: '',
   };
 
   inputChangedHandler = (event) => {
     this.setState({ [event.target.name]: event.target.value });
   };
 
-  searchHandler = (event) => {
+  searchHandler = async (event) => {
     event.preventDefault();
+    this.setState({ searching: true });
+    const { option, searchFor } = this.state;
+    const { history } = this.props;
+
+    try {
+      if (option === 'name') {
+        const products = await api.get(`/shop/products/${searchFor}`);
+        this.setState({ searching: false, produtos: products.data.produtos, error: '' });
+      } else if (option === 'codebar') {
+        const products = await api.get(`/shop/product/${searchFor}`);
+        this.setState({ searching: false, produtos: [products.data.produtos], error: '' });
+      }
+    } catch (error) {
+      if (error.response.status === 401) {
+        logout();
+        history.push('/');
+      }
+
+      const errorMessage = error.response.data.message;
+      this.setState({ searching: false, error: errorMessage, produtos: [] });
+    }
   };
 
   render() {
     const {
-      produtos, option, searchFor, searching,
+      produtos, option, searchFor, searching, error,
     } = this.state;
+
+    const errorElement = (
+      <Paper bgColor="#d9534f" flexDirection="row" padding="1">
+        <FaExclamationCircle color="#fff" size="64" />
+        <p style={{ color: '#fff', marginLeft: '20px' }}>{error}</p>
+      </Paper>
+    );
     return (
       <div>
         <h1 style={{ textAlign: 'center' }}>Buscar Produtos:</h1>
@@ -61,12 +70,13 @@ class Products extends Component {
           onSearch={this.searchHandler}
           element={searching ? <Spinner color="#262626" /> : <FaSearch size="22px" />}
         />
+        <div style={{ maxWidth: '360px', margin: '3em auto' }}>{error && errorElement}</div>
         <div>
           {produtos.map(produto => (
             <Product
               key={produto.nome}
               nome={produto.nome}
-              reference={produto.ref}
+              reference={produto.referencia}
               preco1={produto.preco1}
               preco2={produto.preco2}
               preco3={produto.preco3}
@@ -82,4 +92,4 @@ class Products extends Component {
   }
 }
 
-export default Products;
+export default withRouter(Products);

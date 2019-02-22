@@ -10,7 +10,9 @@ const SearchBar = ({
       <div className="search-bar">
         <input type="text" onChange={inputChanged} name="searchFor" value={searchFor} />
 
-        <button type="submit">{element}</button>
+        <button type="submit" disabled={searchFor.length < 1}>
+          {element}
+        </button>
       </div>
       <div className="search-for">
         <input
