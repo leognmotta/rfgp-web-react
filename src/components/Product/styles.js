@@ -24,6 +24,10 @@ export const Prices = styled.div`
     background-color: #f2f2f2;
     width: 100%;
   }
+  .pricesHeader {
+    text-align: left;
+    align-self: flex-start;
+  }
   div {
     display: flex;
     flex-direction: row;
@@ -32,10 +36,7 @@ export const Prices = styled.div`
     margin: 0.4em 0;
 
     @media (min-width: 420px) {
-      padding: 0 5em;
-    }
-    @media (min-width: 510px) {
-      padding: 0 8em;
+      padding: 0 4em;
     }
   }
 `;
@@ -43,5 +44,3 @@ export const Prices = styled.div`
 export const Stock = styled.div`
   padding: 0.5em;
 `;
-
-export const Controller = styled.div``;

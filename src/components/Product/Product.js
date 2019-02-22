@@ -2,7 +2,7 @@ import React from 'react';
 
 import Paper from '../UI/Paper/Paper';
 import {
-  Container, Info, Prices, Stock, Controller,
+  Container, Info, Prices, Stock,
 } from './styles';
 
 const Product = (props) => {
@@ -23,24 +23,30 @@ const Product = (props) => {
         </Info>
         <Prices>
           <div>
-            <span>
-              <strong>Embalagens:</strong>
+            <span className="pricesHeader">
+              <strong>Emb:</strong>
             </span>
             <span>
               <strong>Precos:</strong>
+            </span>
+            <span>
+              <strong>Total:</strong>
             </span>
           </div>
           <div>
             <span>{emb1}</span>
             <span>{preco1}</span>
+            <span>{emb1 && preco1 ? emb1 * preco1 : null}</span>
           </div>
           <div className="highlight">
             <span>{emb2}</span>
             <span>{preco2}</span>
+            <span>{emb2 && preco2 ? emb2 * preco2 : null}</span>
           </div>
           <div>
             <span>{emb3}</span>
             <span>{preco3}</span>
+            <span>{emb3 && preco3 ? emb3 * preco3 : null}</span>
           </div>
         </Prices>
         <Stock>
